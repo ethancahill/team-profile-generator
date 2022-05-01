@@ -1,70 +1,52 @@
 
-const generateManager = manager => {
+const generateManager = managerArr => {
+
+}
+
+const generateIntern = internArr => {
+
+}
+
+const generateEngineer = engineerArr => {
+ 
+}
+
+const generatePage = (employeeData) => {
+    const managerArr = employeeData.filter((employees) => employees.role == 'Manager');
+    const internArr = employeeData.filter((employees) => employees.role == 'Intern');
+    const engineerArr = employeeData.filter((employees) => employees.role == 'Engineer');
+
     return `
-    <section class="container">
-        <div class="row">
-            <div class="col">
-                <div id="managerTitle">
-                    <h2>
-                        ${manager.role}
-                    </h2>
-                    <h3>
-                        ${manager.name}
-                    </h3>
+    <!DOCTYPE html>
+    <html lang="en">
+  
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>My Team</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            <link rel="stylesheet" href="style.css">
+        </head>
+
+        <body>
+            <header>
+                <div class="container">
+                    <div class="row">
+                        <h1 class= "col">
+                        My Team
+                        </h1>
+                    </div>
                 </div>
-                <div id="managerInfo">
-                    <p> ID: ${manager.id} </p>
-                    </b>
-                    <a href = "mailto: ${manager.email}"> ${manager.email}</a>
-                    </b>
-                    <p> Office Number: ${manager.officeNumber}
-                </div>
+            </header>
+
+        <main class="container'>
+            ${generateManager(managerArr)}
+            ${generateEngineer(engineerArr)}
+            ${generateIntern(internArr)}
+        </main>    
+        </body>
     `
 }
 
-const generateIntern = intern => {
-    return `
-    <section class="container">
-        <div class="row">
-            <div class="col">
-                <div id="internTitle">
-                    <h2>
-                        ${intern.role}
-                    </h2>
-                    <h3>
-                        ${intern.name}
-                    </h3>
-                </div>
-                <div id="internInfo">
-                    <p> ID: ${intern.id} </p>
-                    </b>
-                    <a href = "mailto: ${intern.email}"> ${manager.email}</a>
-                    </b>
-                    <p> School: ${intern.school}</p>
-                </div>
-    `
-}
-
-const generateEngineer = engineer => {
-    return `
-    <section class="container">
-    <div class="row">
-        <div class="col">
-            <div id="engineerTitle">
-                <h2>
-                    ${engineer.role}
-                </h2>
-                <h3>
-                    ${engineer.name}
-                </h3>
-            </div>
-            <div id="engineerInfo">
-                <p> ID: ${engineer.id} </p>
-                </b>
-                <a href = "mailto: ${engineer.email}"> ${engineer.email}</a>
-                </b>
-                <p> School: ${engineer.school}</p>
-            </div>`
-}
-
-module.exports = generateManager
+module.exports = generatePage
