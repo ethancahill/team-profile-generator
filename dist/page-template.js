@@ -1,14 +1,34 @@
 
 const generateManager = managerArr => {
-
+    managerArr.forEach(manager => {
+        return`
+        <div class="col" id="managerBox">
+            <h3>
+            Manager: ${manager.getName()}
+            </h3>
+                <div>
+                    <p>
+                    Id: ${manager.getId()}
+                    </p>
+                    </b>
+                    <p>
+                    Email: <a href="mailto: ${manager.getEmail()}>
+                    </p>
+                    <p>
+                    Office Number: ${manager.getOfficeNumber()}
+                    </p>
+            </div>
+        </div>
+        `
+    })
 }
 
 const generateIntern = internArr => {
-
+    return ``
 }
 
 const generateEngineer = engineerArr => {
- 
+    return 
 }
 
 const generatePage = (employeeData) => {

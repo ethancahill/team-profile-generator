@@ -161,15 +161,15 @@ promptIntern = async (employeeData) => {
             }
         ])
     const { name, id, email, school, role } = internData
-    if (role === "No, I'm Finished") {
+    if  (role === 'Engineer') {
         employeeData.push(new Intern(name, id, email, school))
-        generatePage(employeeData)
+        promptEngineer(employeeData)
     } else if (role === 'Intern') {
         employeeData.push(new Intern(name, id, email, school))
         promptIntern(employeeData)
-    } else if (role === 'Engineer') {
+    } else if (role === "No, I'm Finished") {
         employeeData.push(new Intern(name, id, email, school))
-        promptEngineer(employeeData)
+        generatePage(employeeData)
     }
 
 };
