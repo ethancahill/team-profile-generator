@@ -1,26 +1,23 @@
-const { rejects } = require('assert')
 const fs = require('fs')
 
 const generateManager = (managerArr) => {
     let managerHtml = ''
     managerArr.forEach(function(manager) {
         managerHtml +=
-        `
-        <div class="col" id="managerBox">
-            <h3>
-            Manager: ${manager.name}
+        `<div class="col border rounded-3 m-2 border-dark bg-light">
+            <h3 class="text-center text-primary">
+                Manager: ${manager.name}
             </h3>
-                <div>
-                    <p>
+            <div class="text-center">
+                <p>
                     Id: ${manager.id}
-                    </p>
-                    </b>
-                    <p>
-                    Email: <a href="mailto: ${manager.email}>
-                    </p>
-                    <p>
+                </p>
+                <p>
+                    Email: <a href="mailto: ${manager.email}">${manager.email}</a>
+                </p>
+                <p>
                     Office Number: ${manager.officeNumber}
-                    </p>
+                </p>
             </div>
         </div>
         `
@@ -29,64 +26,58 @@ const generateManager = (managerArr) => {
 }
 
 const generateIntern = (internArr) => {
-    console.log(internArr)
     if (internArr.length === 0) {
         return ''
     } else {
         let internHtml = ''
         internArr.forEach(function(intern) {
             internHtml +=
-                `
-        <div class="col" id="managerBox">
-            <h3>
-            Intern: ${intern.name}
-            </h3>
-                <div>
+            `<div class="col border rounded-3 m-2 border-dark">
+                <h3 class="text-center text-secondary">
+                    Intern: ${intern.name}
+                </h3>
+                <div class="text-center">
                     <p>
-                    Id: ${intern.id}
-                    </p>
-                    </b>
-                    <p>
-                    Email: <a href="mailto: ${intern.email}>
+                        Id: ${intern.id}
                     </p>
                     <p>
-                    School: ${intern.school}
+                        Email: <a href="mailto: ${intern.email}">${intern.email}</a>
                     </p>
+                    <p>
+                        School: ${intern.school}
+                    </p>
+                </div>
             </div>
-        </div>
-        `
+            `
         })
         return internHtml
     }
 }
 
 const generateEngineer = (engineerArr) => {
-    console.log(engineerArr)
     if (engineerArr.length === 0 ) {
         return ''
     } else {
         let engineerHtml = ''
         engineerArr.forEach(function(engineer) {
             engineerHtml +=
-                `
-        <div class="col" id="managerBox">
-            <h3>
-            Engineer: ${engineer.name}
-            </h3>
-                <div>
+            `<div class="col border rounded-3 m-2 border-dark bg-light">
+                <h3 class="text-center text-danger">
+                    Engineer: ${engineer.name}
+                </h3>
+                <div class="text-center">
                     <p>
-                    Id: ${engineer.id}
-                    </p>
-                    </b>
-                    <p>
-                    Email: <a href="mailto: ${engineer.email}></a>
+                        Id: ${engineer.id}
                     </p>
                     <p>
-                    Github: <a href=https://www.github.com/${engineer.github}></a>
+                        Email: <a href="mailto: ${engineer.email}">${engineer.email}</a>
                     </p>
+                    <p>
+                        Github: <a href=https://www.github.com/${engineer.github}>${engineer.github}</a>
+                    </p>
+                </div>
             </div>
-        </div>
-        `
+            `
         })
         return engineerHtml
     }
@@ -111,13 +102,12 @@ const generatePage = async (employeeData) => {
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title>My Team</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-            <link rel="stylesheet" href="style.css">
         </head>
 
         <body>
             <header>
                 <div class="container">
-                    <div class="row">
+                    <div class="row text-center">
                         <h1 class= "col">
                         My Team
                         </h1>
@@ -126,9 +116,15 @@ const generatePage = async (employeeData) => {
             </header>
 
         <main class="container">
-        ${managers}
-        ${engineers}
-        ${interns}
+            <div class="row border border-primary mb-2" id="managerBox">
+                ${managers}
+            </div>
+            <div class="row border border-danger mb-2" id="engineerBox">
+                ${engineers}
+            </div>
+            <div class="row border border-secondary mb-2" id="internBox">
+                ${interns}
+            </div>
         </main>    
         </body>
     `
