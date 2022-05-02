@@ -1,42 +1,99 @@
 
 const generateManager = managerArr => {
-    managerArr.forEach(manager => {
-        return`
+    let managerHtml = ''
+    managerArr.forEach(function(manager) {
+        managerHtml +=
+            `
         <div class="col" id="managerBox">
             <h3>
-            Manager: ${manager.getName()}
+            Manager: ${manager.name}
             </h3>
                 <div>
                     <p>
-                    Id: ${manager.getId()}
+                    Id: ${manager.id}
                     </p>
                     </b>
                     <p>
-                    Email: <a href="mailto: ${manager.getEmail()}>
+                    Email: <a href="mailto: ${manager.email}>
                     </p>
                     <p>
-                    Office Number: ${manager.getOfficeNumber()}
+                    Office Number: ${manager.officeNumber}
                     </p>
             </div>
         </div>
         `
     })
+    return managerHtml
 }
 
 const generateIntern = internArr => {
-    return ``
+    if (internArr === []) {
+        return ''
+    } else {
+        let internHtml = ''
+        managerArr.forEach(function(intern) {
+            internHtml +=
+                `
+        <div class="col" id="managerBox">
+            <h3>
+            Manager: ${intern.name}
+            </h3>
+                <div>
+                    <p>
+                    Id: ${intern.id}
+                    </p>
+                    </b>
+                    <p>
+                    Email: <a href="mailto: ${intern.email}>
+                    </p>
+                    <p>
+                    School: ${intern.school}
+                    </p>
+            </div>
+        </div>
+        `
+        })
+        return internHtml
+    }
 }
 
 const generateEngineer = engineerArr => {
-    return 
+    if (engineerArr === []) {
+        return ''
+    } else {
+        let engineerHtml = ''
+        managerArr.forEach(function(engineer) {
+            engineerHtml +=
+                `
+        <div class="col" id="managerBox">
+            <h3>
+            Manager: ${engineer.name}
+            </h3>
+                <div>
+                    <p>
+                    Id: ${engineer.id}
+                    </p>
+                    </b>
+                    <p>
+                    Email: <a href="mailto: ${engineer.email}></a>
+                    </p>
+                    <p>
+                    Github: <a href=https://www.github.com/${engineer.github}></a>
+                    </p>
+            </div>
+        </div>
+        `
+        })
+        return engineerHtml
+    }
 }
 
-const generatePage = (employeeData) => {
+const generatePage = async (employeeData) => {
     const managerArr = employeeData.filter((employees) => employees.role == 'Manager');
     const internArr = employeeData.filter((employees) => employees.role == 'Intern');
     const engineerArr = employeeData.filter((employees) => employees.role == 'Engineer');
 
-    return `
+    pageHtml = `
     <!DOCTYPE html>
     <html lang="en">
   
@@ -61,12 +118,15 @@ const generatePage = (employeeData) => {
             </header>
 
         <main class="container'>
-            ${generateManager(managerArr)}
-            ${generateEngineer(engineerArr)}
-            ${generateIntern(internArr)}
+            ${await generateManager(managerArr)}
+            ${await generateEngineer(engineerArr)}
+            ${await generateIntern(internArr)}
         </main>    
         </body>
     `
+    console.log(pageHtml)
+    return pageHtml
+
 }
 
 module.exports = generatePage

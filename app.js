@@ -7,7 +7,7 @@ const inquirer = require('inquirer');
 
 
 
-const promptManager = async () => {
+promptManager = async () => {
     const employeeData = []
     console.log(`
 =================================================================
@@ -80,14 +80,12 @@ Welcome to TeamGen. Please enter your Team Manager's information.
 
 
     const { name, id, email, officeNumber, role } = managerData
+    employeeData.push(new Manager(name, id, email, officeNumber))
     if (role === 'Intern') {
-        employeeData.push(new Manager(name, id, email, officeNumber))
         promptIntern(employeeData)
     } else if (role === 'Engineer') {
-        employeeData.push(new Manager(name, id, email, officeNumber))
         promptEngineer(employeeData)
     } else if (role === "No, I'm Finished") {
-        employeeData.push(new Manager(name, id, email, officeNumber))
         generatePage(employeeData)
     }
 };
@@ -161,15 +159,13 @@ promptIntern = async (employeeData) => {
             }
         ])
     const { name, id, email, school, role } = internData
+    employeeData.push(new Intern(name, id, email, school))
     if  (role === 'Engineer') {
-        employeeData.push(new Intern(name, id, email, school))
         promptEngineer(employeeData)
     } else if (role === 'Intern') {
-        employeeData.push(new Intern(name, id, email, school))
         promptIntern(employeeData)
     } else if (role === "No, I'm Finished") {
-        employeeData.push(new Intern(name, id, email, school))
-        generatePage(employeeData)
+     generatePage(employeeData)
     }
 
 };
@@ -244,18 +240,14 @@ promptEngineer = async (employeeData) => {
         ])
 
         const { name, id, email, github, role } = engineerData
-
+        employeeData.push(new Engineer(name, id, email, github))
         if (role === 'Intern') {
-            employeeData.push(new Engineer(name, id, email, github))
             promptIntern(employeeData)
         } else if (role === 'Engineer') {
-            employeeData.push(new Engineer(name, id, email, github))
             promptEngineer(employeeData)
         } else if (role === "No I'm Finished") {
-            employeeData.push(new Engineer(name, id, email, github))
-            generatePage(employeeData)
+        generatePage(employeeData)
         }
 };
-
 
 promptManager()
