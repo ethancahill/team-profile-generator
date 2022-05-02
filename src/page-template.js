@@ -1,9 +1,11 @@
+const { rejects } = require('assert')
+const fs = require('fs')
 
-const generateManager = managerArr => {
+const generateManager = (managerArr) => {
     let managerHtml = ''
     managerArr.forEach(function(manager) {
         managerHtml +=
-            `
+        `
         <div class="col" id="managerBox">
             <h3>
             Manager: ${manager.name}
@@ -26,17 +28,18 @@ const generateManager = managerArr => {
     return managerHtml
 }
 
-const generateIntern = internArr => {
-    if (internArr === []) {
+const generateIntern = (internArr) => {
+    console.log(internArr)
+    if (internArr.length === 0) {
         return ''
     } else {
         let internHtml = ''
-        managerArr.forEach(function(intern) {
+        internArr.forEach(function(intern) {
             internHtml +=
                 `
         <div class="col" id="managerBox">
             <h3>
-            Manager: ${intern.name}
+            Intern: ${intern.name}
             </h3>
                 <div>
                     <p>
@@ -57,17 +60,18 @@ const generateIntern = internArr => {
     }
 }
 
-const generateEngineer = engineerArr => {
-    if (engineerArr === []) {
+const generateEngineer = (engineerArr) => {
+    console.log(engineerArr)
+    if (engineerArr.length === 0 ) {
         return ''
     } else {
         let engineerHtml = ''
-        managerArr.forEach(function(engineer) {
+        engineerArr.forEach(function(engineer) {
             engineerHtml +=
                 `
         <div class="col" id="managerBox">
             <h3>
-            Manager: ${engineer.name}
+            Engineer: ${engineer.name}
             </h3>
                 <div>
                     <p>
@@ -93,7 +97,11 @@ const generatePage = async (employeeData) => {
     const internArr = employeeData.filter((employees) => employees.role == 'Intern');
     const engineerArr = employeeData.filter((employees) => employees.role == 'Engineer');
 
-    pageHtml = `
+    let managers = await generateManager(managerArr)
+    let engineers =  await generateEngineer(engineerArr)
+    let interns = await generateIntern(internArr)
+
+    pageHtml= `
     <!DOCTYPE html>
     <html lang="en">
   
@@ -117,15 +125,20 @@ const generatePage = async (employeeData) => {
                 </div>
             </header>
 
-        <main class="container'>
-            ${await generateManager(managerArr)}
-            ${await generateEngineer(engineerArr)}
-            ${await generateIntern(internArr)}
+        <main class="container">
+        ${managers}
+        ${engineers}
+        ${interns}
         </main>    
         </body>
     `
-    console.log(pageHtml)
-    return pageHtml
+    fs.writeFile('./dist/index.html', pageHtml, err => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log('Page has been written')
+        }
+    })
 
 }
 

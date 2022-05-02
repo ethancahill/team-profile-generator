@@ -2,7 +2,7 @@
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
-const generatePage = require('./dist/page-template');
+const generatePage = require('./src/page-template');
 const inquirer = require('inquirer');
 
 
