@@ -10,7 +10,7 @@
 
 ## Description
 
-This is a simple command line input Team Profile Generator that outputs and HTML document with all your team members information displayed in an organized format. If you look in the dist folder there is an example of what the output looks like. 
+This is a simple command line input Team Profile Generator that outputs an HTML document with all your team members information displayed in an organized format. If you look in the dist folder there is an example of what the output looks like. 
 
 ## Installation Instructions
 
